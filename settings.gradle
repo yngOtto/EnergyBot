@@ -1,0 +1,12 @@
+rootProject.name = 'EnergyOprator'
+include 'domain' , 'shared'
+include 'webapp' , 'shared'
+include 'kubeApiInbound', 'shared'
+include 'postgresOutbound', 'shared'
+include 'kubeclientOutbound', 'shared'
+include 'appui', 'shared'
+include 'mailOutboud', 'shared'
+include 'botInbound', 'shared'
+include 'memberApiInbound'
+include 'requesthandler'
+
