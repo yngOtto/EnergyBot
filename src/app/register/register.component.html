@@ -1,0 +1,108 @@
+<div fxLayoutAlign="center center" fxFlexFill fxFlexFill class="main-div">
+  <mat-card fxFlex="20">
+    <div class="card card-container">
+      <form
+        fxLayoutAlign="stretch"
+        fxLayout="column"
+        *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <mat-form-field>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              matInput
+              type="email"
+              class="form-control"
+              name="email"
+              [(ngModel)]="form.user.email"
+              required
+              email
+              #email="ngModel"
+            />
+            <div class="alert-danger" *ngIf="email.errors && f.submitted">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              matInput
+              type="password"
+              class="form-control"
+              name="password"
+              [(ngModel)]="form.user.password"
+              required
+              minlength="7"
+              #password="ngModel"
+            />
+            <div class="alert-danger" *ngIf="password.errors && f.submitted">
+              <div *ngIf="password.errors.required">Password is required</div>
+              <div *ngIf="password.errors.minlength">
+                Password must be at least 7 characters
+              </div>
+            </div>
+          </div>
+        </mat-form-field>
+        <div class="form-group">
+          <button
+            type="submit"
+            mat-raised-button
+            class="btn btn-primary btn-block"
+          >
+            Sign Up
+          </button>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Signup failed!<br />{{ errMessage }}
+        </div>
+      </form>
+
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
+
+      <div *ngIf="isSuccessful && !isTokenRegistered">
+        <form
+          fxLayoutAlign="stretch"
+          fxLayout="column"
+          name="tokenform"
+          (ngSubmit)="tf.form.valid && onTokenSubmit()"
+          #tf="ngForm"
+          novalidate
+        >
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Enter token key"
+              name="token"
+              [(ngModel)]="form.token"
+              required
+              #token="ngModel"
+            />
+            <mat-error *ngIf="token.invalid && token.touched"
+              >Token key is required</mat-error
+            >
+          </mat-form-field>
+          <button type="submit" mat-raised-button>Submit</button>
+        </form>
+      </div>
+      <div class="alert alert-success" *ngIf="isTokenRegistered">
+        Token has been registered!
+        <button type="button" mat-raised-button (click)="redirectToLogin()">
+          Go to login
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,44 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="20">
+    <form
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+      (ngSubmit)="userLogin()"
+      fxLayoutAlign="stretch"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <fa-icon [icon]="faUser"></fa-icon>
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="form.email"
+          id="email"
+          name="email"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <fa-icon [icon]="faLock"></fa-icon>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="form.password"
+          id="password"
+          name="password"
+        />
+      </mat-form-field>
+      <div class="form-group">
+        <button mat-raised-button type="submit">Login</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && loginFailed">
+        Login failed!<br />{{ errMessage }}
+      </div>
+    </form>
+  </mat-card>
+</div>
