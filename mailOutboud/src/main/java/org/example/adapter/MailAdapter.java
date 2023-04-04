@@ -31,10 +31,10 @@ public class MailAdapter implements MailPersistencePort   {
       helper.setFrom("bachelorprojeekt@vittech.dk");
       LOGGER.info("Sending email to "+mail,mimeMessage);
       emailSender.send(mimeMessage);
-      LOGGER.info("Sendt email to "+mail,mimeMessage);
+      LOGGER.info("Sent email to "+mail,mimeMessage);
     } catch (MessagingException e) {
-      LOGGER.error("failed to send email", e);
-      throw new IllegalStateException("failed to send email");
+      LOGGER.error("unable to send email", e);
+      throw new IllegalStateException("unable to send email");
     }
   }
 }
