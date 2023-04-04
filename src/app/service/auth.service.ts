@@ -22,7 +22,7 @@ export class AuthService {
     );
   }
 
-  confirm(token: string): Observable<any> {
+  confirmToken(token: string): Observable<any> {
     const url = `${this.baseUrl}/confirm`;
     const body = {token};
     return this.http.post<any>(url, body).pipe(
