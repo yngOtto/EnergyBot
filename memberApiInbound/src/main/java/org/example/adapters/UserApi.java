@@ -67,7 +67,6 @@ public class UserApi {
       }else{
         loginResponse.setMessaget("{enabled : false}");
       }
-
     }
     return loginResponse;
   }
